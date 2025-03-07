@@ -1,0 +1,11 @@
+.env
+todo/__pycache__
+tasks/__pycache__
+*.pyc
+*~
+__pycache__
+env
+db.sqlite3
+/static
+.DS_Store
+.ropeproject
