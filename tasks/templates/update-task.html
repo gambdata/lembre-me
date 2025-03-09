@@ -1,7 +1,8 @@
-<h1> Update Task: </h1>
+<h1> Atualizar Tarefas: </h1>
 
 <form method="POST" action="">
     {% csrf_token %}
     {{TaskForm}}
     <input class="btn" type="submit" name="Atualizar tarefa">
+    <a href="{% url 'index' %}"> Cancelar </a>
 </form>
