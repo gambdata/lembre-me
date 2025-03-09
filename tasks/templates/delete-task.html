@@ -1,0 +1,10 @@
+<h1> Excluir Tarefa: </h1>
+
+<p> Você realmente dejesa excluir essa tarefa? - {{task}} </p>
+
+<form method="POST" action="">
+    {% csrf_token %}
+    <input type="submit" name="Confirmar exclusão">
+</form>
+
+<a href="{% url 'index' %}"> Cancelar </a>
