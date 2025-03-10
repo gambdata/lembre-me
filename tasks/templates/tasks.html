@@ -1,3 +1,6 @@
+{% extends 'base.html' %}
+
+{% block body %}
 <h1> Tarefas: </h1>
 
 <form method="POST" action="/">
@@ -6,7 +9,9 @@
     <input class="btn" type="submit" name="Criar tarefa">
 </form>
 
-<div class="container">
+<div class="container-fluid">
+    <div class="row border">
+        <div class="col">
     <div class="status" id="novo">
         <h2>Novo</h2>
         {% for task in tasks %}
@@ -14,11 +19,12 @@
             <div class="task">#{{task.id}}</div>
             <div class="task">{{task.title}}</div>
             <div class="task">{{task.created}}</div>
-            <a href="{% url 'update-task' task.id %}">Atualizar</a>
-            <a href="{% url 'delete-task' task.id %}">Excluir</a>
+            <a href="{% url 'update-task' task.id %}"><i class="bi bi-pencil-fill"></i></a>
+            <a href="{% url 'delete-task' task.id %}"><i class="bi bi-x-circle-fill"></i></a>
             {% endif %}
         {% endfor %}
-    </div>
+    </div></div>
+    <div class="col">
     <div class="status" id="em-andamento">
         <h2>Em andamento</h2>
         {% for task in tasks %}
@@ -30,7 +36,8 @@
             <a href="{% url 'delete-task' task.id %}">Excluir</a>
             {% endif %}
         {% endfor %}
-    </div>
+    </div></div>
+<div class="col">
     <div class="status" id="em-teste">
         <h2>Testando</h2>
         {% for task in tasks %}
@@ -42,7 +49,8 @@
             <a href="{% url 'delete-task' task.id %}">Excluir</a>
             {% endif %}
         {% endfor %}
-    </div>
+    </div></div>
+    <div class="col">
     <div class="status" id="homologacao">
         <h2>Homologação</h2>
         {% for task in tasks %}
@@ -54,5 +62,7 @@
             <a href="{% url 'delete-task' task.id %}">Excluir</a>
             {% endif %}
         {% endfor %}
-    </div>
+    </div></div>
 </div>
+</div>
+{% endblock %}
