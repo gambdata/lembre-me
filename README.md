@@ -20,7 +20,12 @@ $ source env/bin/activate
 $ (env) pip install -r requirements.txt
 ```
 
-### 4. Execute seu aplicativo no browser (http://localhost:8000):
+### 4. Criando a estrutura do banco de dados:
+```
+$ (env) python manager.py migrate
+```
+
+### 5. Execute seu aplicativo no browser (http://localhost:8000) com a porta padrão:
 ```
 $ (env) python manager.py runserver
 ```
