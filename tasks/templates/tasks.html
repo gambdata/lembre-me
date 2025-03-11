@@ -3,13 +3,6 @@
 {% block title %} Lembre-me {% endblock %}
 
 {% block body %}
-<h1> Tarefas: </h1>
-
-<form method="POST" action="/" class="form">
-    {% csrf_token %}
-    {{TaskForm.title}}
-    <input class="btn" type="submit" name="Criar tarefa">
-</form>
 
 <div class="container-fluid">
     <div class="row border">

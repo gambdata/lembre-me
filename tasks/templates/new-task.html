@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<h1> Nova tarefa! </h1>
+
+<form method="POST" action="{% url 'new-task' %}" class="form">
+    {% csrf_token %}
+    {{TaskForm.title}}
+    {{TaskForm.new}}
+    <input class="btn" type="submit" name="Criar tarefa">
+    <a href="{% url 'index' %}"> Cancelar </a>
+</form>
+{% endblock %}
