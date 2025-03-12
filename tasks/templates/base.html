@@ -8,21 +8,74 @@
     {% bootstrap_javascript %}
     {% bootstrap_messages %}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://bootswatch.com/5/darkly/bootstrap.min.css">
     <title>{% block title %}{% endblock %}</title>
 </head>
 <body>
-    
-    <div class="container-fluid">
-        <ul class="nav bg-info">
-            <li class="nav-item">
-                <a class="nav-link link-light" href="/"><i class="fa fa-home"></i> Home</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link link-light" href="#"><i class="fa fa-home"></i> Login</a>
-            </li>
-            <a href="new-task"><i class="bi bi-pencil-fill" title="criar"></i></a>
-        </ul>
-        
+
+    <div class="container-fluid"> 
+    <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">Lembre-me!</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        <div class="collapse navbar-collapse" id="navbarColor01">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#">Home
+                        <span class="visually-hidden">(current)</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Projetos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Visualizações</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Meu Painel</a>
+                </li>
+            </ul>
+            <form class="d-flex">
+                <input class="form-control me-sm-2" type="search" placeholder="Pesquise aqui...">
+                <button class="btn btn-secondary my-2 my-sm-0" type="submit">Pesquisar</button>
+            </form>
+            <div class="d-flex" style="margin-left:0.5em">
+                <!-- <a href="new-task">{% bootstrap_button "Criar Tarefa" button_type="submit" button_class="btn btn-secondary my-2 my-sm-0" %} --><!-- </a> -->
+
+            <form method="POST" action="{% url 'new-task' %}">
+                {% csrf_token %}
+                <button type="button" class="btn btn-success my-2 my-sm-0" data-bs-toggle="modal" data-bs-target="#myModal">Criar Tarefa</button>
+
+                <div class="modal" id="myModal">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h4 class="modal-title">Criar nova tarefa</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+
+                    <div class="modal-body">
+                        {{TaskForm.title}}
+                        {{TaskForm.new}} Status novo
+                    </div>
+
+                    <div class="modal-footer">
+                        <button class="btn btn-primary" type="submit">Criar</button> 
+                        <a href="{% url 'index' %}"><button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button></a>
+                    </div>
+                </div>
+            </div>
+            </form>
+</div>
+
+
+
+            </div>
+        </div>
+    </nav>
     </div>
         
     {% block body %}
