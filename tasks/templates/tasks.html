@@ -4,64 +4,77 @@
 
 {% block body %}
 
-<div class="container-fluid">
-    <div class="row border">
-    <div class="col">
-    <div class="status" id="novo">
-        <h2>Novo</h2>
-        {% for task in tasks %}
-            {% if task.new == 1 %}
-            <div class="task">#{{task.id}}</div>
-            <div class="task">{{task.title}}</div>
-            <div class="task">{{task.created}}</div>
+<div class="container-fluid pt-3">
+    <div class="row">
+    
+    <div class="col"> 
+    <h4> Novo </h4>
+    {% for task in tasks %}
+    {% if task.new == 1 %}
+    <div class="card border-primary mb-3" style="max-width: 80rem;">
+        <div class="card-header" style="font-style:italic; font-size:14px; font-weight:bold">##{{task.id}}</div>
+        <div class="card-body">
+            <h6 class="card-title">{{task.title}}</h6>
+            <p class="card-text" style="font-size:12px">Criado em {{task.created}}</p>
             <a href="{% url 'update-task' task.id %}"><i class="bi bi-pencil-fill" title="Editar"></i></a>
             <a href="{% url 'delete-task' task.id %}"><i class="bi bi-x-circle-fill" title="Excluir"></i></a>
-            {% endif %}
-        {% endfor %}
+        </div>
     </div>
+    {% endif %}
+    {% endfor %}
     </div>
+
     <div class="col">
-    <div class="status" id="em-andamento">
-        <h2>Em andamento</h2>
-        {% for task in tasks %}
-            {% if task.in_progress == 1 %}
-            <div class="task">#{{task.id}}</div>
-            <div class="task">{{task.title}}</div>
-            <div class="task">{{task.created}}</div>
+    <h4> Em andamento </h4>
+    {% for task in tasks %}
+    {% if task.in_progress == 1 %}
+    <div class="card border-warning mb-3" style="max-width: 80rem;">
+        <div class="card-header" style="font-style:italic; font-size:14px; font-weight:bold">##{{task.id}}</div>
+        <div class="card-body">
+            <h6 class="card-title">{{task.title}}</h6>
+            <p class="card-text" style="font-size:12px">Criado em {{task.created}}</p>
             <a href="{% url 'update-task' task.id %}"><i class="bi bi-pencil-fill" title="Editar"></i></a>
             <a href="{% url 'delete-task' task.id %}"><i class="bi bi-x-circle-fill" title="Excluir"></i></a>
-            {% endif %}
-        {% endfor %}
+        </div>
     </div>
+    {% endif %}
+    {% endfor %}
     </div>
+
     <div class="col">
-    <div class="status" id="em-teste">
-        <h2>Testando</h2>
-        {% for task in tasks %}
-            {% if task.testing == 1 %}
-            <div class="task">#{{task.id}}</div>
-            <div class="task">{{task.title}}</div>
-            <div class="task">{{task.created}}</div>
+    <h4> Testando </h4>
+    {% for task in tasks %}
+    {% if task.testing == 1 %}
+    <div class="card border-danger mb-3" style="max-width: 80rem;">
+        <div class="card-header" style="font-style:italic; font-size:14px; font-weight:bold">##{{task.id}}</div>
+        <div class="card-body">
+            <h6 class="card-title">{{task.title}}</h6>
+            <p class="card-text" style="font-size:12px">Criado em {{task.created}}</p>
             <a href="{% url 'update-task' task.id %}"><i class="bi bi-pencil-fill" title="Editar"></i></a>
             <a href="{% url 'delete-task' task.id %}"><i class="bi bi-x-circle-fill" title="Excluir"></i></a>
-            {% endif %}
-        {% endfor %}
+        </div>
     </div>
+    {% endif %}
+    {% endfor %}
     </div>
+
     <div class="col">
-    <div class="status" id="homologacao">
-        <h2>Homologação</h2>
-        {% for task in tasks %}
-            {% if task.homologation == 1 %}
-            <div class="task">#{{task.id}}</div>
-            <div class="task">{{task.title}}</div>
-            <div class="task">{{task.created}}</div>
+    <h4> Homologação </h4>
+    {% for task in tasks %}
+    {% if task.homologation == 1 %}
+    <div class="card border-success mb-3" style="max-width: 80rem;">
+        <div class="card-header" style="font-style:italic; font-size:14px; font-weight:bold">##{{task.id}}</div>
+        <div class="card-body">
+            <h6 class="card-title">{{task.title}}</h6>
+            <p class="card-text" style="font-size:12px">Criado em {{task.created}}</p>
             <a href="{% url 'update-task' task.id %}"><i class="bi bi-pencil-fill" title="Editar"></i></a>
             <a href="{% url 'delete-task' task.id %}"><i class="bi bi-x-circle-fill" title="Excluir"></i></a>
-            {% endif %}
-        {% endfor %}
+        </div>
     </div>
+    {% endif %}
+    {% endfor %}
     </div>
+
 </div>
 </div>
 {% endblock %}
