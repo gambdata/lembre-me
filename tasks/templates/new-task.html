@@ -1,13 +1,50 @@
 {% extends 'base.html' %}
 
 {% block body %}
-<h1> Nova tarefa! </h1>
+<div class="container-fluid pt-3">
+<h4> Criar nova tarefa... </h4>
 
-<form method="POST" action="{% url 'new-task' %}" class="form">
+<!-- <form method="POST" action="{% url 'new-task' %}"> -->
+    <!-- {% csrf_token %} -->
+    <!-- <div class="mb-3 mt-3"> -->
+        <!-- {{TaskForm.title}} -->
+    <!-- </div> -->
+    <!-- <div class="form-check mb-3"> -->
+        <!-- {{TaskForm.new}} Nova tarefa -->
+    <!-- </div> -->
+    <!-- <button class="btn btn-primary" type="submit">Criar</button> -->
+    <!-- <a href="{% url 'index' %}"><button class="btn btn-danger" type="button">Cancelar</button></a> -->
+<!-- </form> -->
+<!-- </div> -->
+
+<form method="POST" action="{% url 'new-task' %}">
     {% csrf_token %}
-    {{TaskForm.title}}
-    {{TaskForm.new}}
-    <input class="btn" type="submit" name="Criar tarefa">
-    <a href="{% url 'index' %}"> Cancelar </a>
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
+  Criar Tarefa
+</button>
+
+<div class="modal" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header">
+          <h4 class="modal-title">Criar nova tarefa</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body">
+          {{TaskForm.title}}
+          {{TaskForm.new}} Nova tarefa
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-primary" type="submit">Criar</button> 
+        <a href="{% url 'index' %}"><button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button></a>
+      </div>
+
+    </div>
+  </div>
+</div>
 </form>
+</div>
 {% endblock %}
