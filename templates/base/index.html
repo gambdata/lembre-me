@@ -4,13 +4,14 @@
 
 {% block content %}
 <div class="container mt-5">
+    {% if user.is_authenticated %}
     <div class="row justify-content-center">
         <div class="col-md-6">
             <h1 class="py-2">Em construção...</h1>
-            <!-- <p class="text-uppercase">
-                Hello world!!
-            </p> -->
         </div>
     </div>
+    {% else %}
+    <p> Faça login para entrar! </p>
+    {% endif %}
 </div>
 {% endblock %}
