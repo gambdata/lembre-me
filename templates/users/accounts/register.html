@@ -1,13 +1,13 @@
 {% extends 'base/base.html' %}
 
-{% block title %} Criar conta {% endblock %}
+{% block title %} Registre-se {% endblock %}
 
 {% block content %}
 <div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-6">
             <div class="card shadow-lg p-4">
-                <h3 class="text-center mb-4">Register</h3>
+                <h3 class="text-center mb-4">Crie sua conta</h3>
                 <form method="post">
                     {% csrf_token %}
                     {% for field in form %}
@@ -19,9 +19,9 @@
                         {% endif %}
                     </div>
                     {% endfor %}
-                    <button type="submit" class="btn btn-primary">Register</button>
+                    <button type="submit" class="btn btn-primary">Registrar</button>
                 </form>
-                <a href="{% url 'login' %}" class="py-2"> Já possui conta? </a>
+                <a href="{% url 'login' %}" class="py-2"> Já possui uma conta? </a>
             </div>
         </div>
     </div>
