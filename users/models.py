@@ -28,14 +28,14 @@ class CustomAccountManager(BaseUserManager):
         user.save()
         return user
 
-class NewUser(AbstractBaseUser, PermissionsMixin):
-    email = models.EmailField(_('endereço de email'), unique=True)
-    user_name = models.CharField(max_length=150, unique=True)
-    first_name = models.CharField(max_length=150, unique=True)
+class Usuario(AbstractBaseUser, PermissionsMixin):
+    email = models.EmailField(_('Email'), unique=True)
+    user_name = models.CharField(_('Usuário'), max_length=150, unique=True)
+    first_name = models.CharField(_('Primeiro nome'), max_length=150, unique=True)
     start_date = models.DateTimeField(default=timezone.now)
-    about = models.TextField(_('sobre'), max_length=500, blank=True)
-    is_staff = models.BooleanField(default=False)
-    is_active = models.BooleanField(default=False)
+    about = models.TextField(_('Sobre'), max_length=500, blank=True)
+    is_staff = models.BooleanField(_('Staff'), default=False)
+    is_active = models.BooleanField(_('Ativo'), default=True)
 
     objects = CustomAccountManager()
 
@@ -43,6 +43,6 @@ class NewUser(AbstractBaseUser, PermissionsMixin):
     REQUIRED_FIELDS = ['user_name', 'first_name']
 
     def __str__(self):
-        return self.user_name
+        return self.email
 
 
