@@ -22,12 +22,12 @@ $ (env) pip install -r requirements.txt
 
 ### 4. Criando a estrutura do banco de dados:
 ```
-$ (env) python manager.py migrate
+$ (env) python manage.py migrate
 ```
 
 ### 5. Execute seu aplicativo no browser (http://localhost:8000) com a porta padrão:
 ```
-$ (env) python manager.py runserver
+$ (env) python manage.py runserver
 ```
 
 ### Contribuição:
