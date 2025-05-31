@@ -25,7 +25,13 @@ $ (env) pip install -r requirements.txt
 $ (env) python manage.py migrate
 ```
 
-### 5. Execute seu aplicativo no browser (http://localhost:8000) com a porta padrão:
+### 5. Para acessar a página de admin, crie o superuser:
+```
+$ (env) python manage.py createsuperuser
+```
+
+### 6. Execute seu aplicativo no browser (http://localhost:8000)
+#### Caso a porta padrão esteja ocupada defina outra porta, Ex. (python manage.py runserver 8080)
 ```
 $ (env) python manage.py runserver
 ```
