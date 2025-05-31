@@ -5,18 +5,57 @@
 {% block content %}
 <div class="container mt-5">
     {% if user.is_authenticated %}
-    <div class="row justify-content-center">
-        <div class="col-md-6">
-            <h1 class="py-2">Olá {{ user.username }}!</h1>
-            <h3 class="py-2">Site em construção...</h3>
+    <div class="container mt-5 text-white">
+        <h1>Bem-vindo {{ user.username }}!</h1>
+        <p class="lead">Crie projetos e faça interações com seu time.</p>
+        <div class="row">
+            <div class="col-md-6 mb-4">
+                <div class="card bg-dark text-white border-secondary">
+                    <div class="card-body">
+                        <h5 class="card-title">Projeto 1</h5>
+                        <p class="card-text">Aqui está seu Projeto 1, veja seu andamento.</p>
+                        <a href="#" class="btn btn-outline-light">Saiba Mais</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 mb-4">
+                <div class="card bg-dark text-white border-secondary">
+                    <div class="card-body">
+                        <h5 class="card-title">Projeto 2</h5>
+                        <p class="card-text">O nosso projeto é incrível.</p>
+                        <a href="#" class="btn btn-outline-light">Saiba Mais</a>
+                    </div>
+                </div>
+            </div>
         </div>
+        <span class="text-white">Lembre-me está focado em sua produtividade.</span>
     </div>
     {% else %}
-    <div class="row justify-content-center">
-        <div class="col-md-6">
-            <h6 class="py-2"> Faça login para entrar! </h6>
+    <div class="container mt-5 text-white">
+            <h1>Bem-vindo ao Lembre-me</h1>
+            <p class="lead">Gerencie seus projetos, crie, delete e edite seus tickets. O diferencial é nosso chat entre o responsável do ticket e o cliente..</p>
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <div class="card bg-dark text-white border-secondary">
+                        <div class="card-body">
+                            <h5 class="card-title">Projetos</h5>
+                            <p class="card-text">Crie projetos e acompanhe seu andamento.</p>
+                            <a href="#" class="btn btn-outline-light">Saiba Mais</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="card bg-dark text-white border-secondary">
+                        <div class="card-body">
+                            <h5 class="card-title">Tickets</h5>
+                            <p class="card-text">Abra tickets de desenvolvimento e saiba como tudo está.</p>
+                            <a href="#" class="btn btn-outline-light">Saiba Mais</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <span class="text-white">Lembre-me é um projeto Open Source.</span>
         </div>
-    </div>
     {% endif %}
 </div>
 {% endblock %}
