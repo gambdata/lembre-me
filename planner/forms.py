@@ -6,3 +6,6 @@ class NovoTicketForm(forms.ModelForm):
     class Meta:
         model = Ticket
         fields = ['criado_por','titulo','conteudo','dt_conclusao_prev','responsavel']
+        widgets = {
+            'dt_conclusao_prev': forms.DateInput(attrs={'type': 'date'})
+        }
