@@ -19,9 +19,10 @@
                         {% endif %}
                     </div>
                     {% endfor %}
-                    <button type="submit" class="btn btn-primary">Entrar</button>
+                    <button type="submit" class="btn btn-primary w-100">Entrar</button>
                 </form>
-                <a href="{% url 'register' %}" class="py-2"> Você ainda não possui uma conta? </a>
+                <p class="py-2 text-center"> Esqueceu a senha? <a href="#"> Redefinir senha </a></p>
+                <p class="text-center"> Não possui uma conta? <a href="{% url 'register' %}"> Registre-se </a></p>
             </div>
         </div>
     </div>
