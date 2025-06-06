@@ -6,9 +6,10 @@ from .models import Usuario
 class RegisterUserForm(UserCreationForm):
     class Meta:
         model = Usuario
-        fields = ('username', 'email', 'password1', 'password2')
+        fields = ('username', 'first_name', 'email', 'password1', 'password2')
         widgets = {
             'username': forms.TextInput(attrs={'placeholder': 'Username','class': 'form-control'}),
+            'first_name': forms.TextInput(attrs={'placeholder': 'Seu nome', 'class': 'form-control'}),
             'email': forms.EmailInput(attrs={'placeholder': 'name@example.com','class': 'form-control'})
         }
     password1 = forms.CharField(label='Senha',widget=forms.PasswordInput(attrs={'placeholder': 'Senha','class': 'form-control'}))
