@@ -22,6 +22,14 @@
         </div>
         <div>
             {% if user.is_authenticated %}
+            <form method="post" action="{% url 'novo-ticket' %}">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-success">NOVO TICKET</button>    
+            </form>
+            {% endif %}
+        </div>
+        <div class="ms-2">
+            {% if user.is_authenticated %}
             <form method="post" action="{% url 'logout' %}">
                 {% csrf_token %}
                 <button type="submit" class="btn btn-light">Logout</button>
