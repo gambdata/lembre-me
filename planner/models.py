@@ -13,7 +13,7 @@ PROGRESS = [
 ]
 
 class Ticket(models.Model):
-    criado_por = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='tickets_criados', default=Usuario.is_authenticated)
+    criado_por = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='tickets_criados', default=Usuario)
     titulo = models.CharField(_('Título'), max_length=50, null=False)
     conteudo = models.TextField(_('Conteúdo'))
     progresso = models.CharField(_('Progresso'), max_length=1, choices=PROGRESS, default='0')
