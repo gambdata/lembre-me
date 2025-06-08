@@ -1,17 +1,27 @@
+{% load static %}
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-md">
-        <a class="navbar-brand" href="/">
-            <img src="static/images/lembre_me_logo.png" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+        <a class="navbar-brand mb-0 h1" href="{% url 'index' %}">
+            <img src="{% static 'images/lembre_me_logo.png' %}" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
             Lembre-me
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
+        <!-- Items à esquerda -->
+        <div class="navbar-nav me-auto mb-2 mb-lg-0" id="navbarNav">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    <a class="nav-link active" aria-current="page" href="{% url 'index' %}">Home</a>
                 </li>
+                {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Projetos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'lista-ticket' %}">Meus trabalhos</a>
+                </li>
+                {% endif %}
                 <li class="nav-item">
                     <a class="nav-link" href="#">Sobre</a>
                 </li>
@@ -20,24 +30,35 @@
                 </li>
             </ul>
         </div>
-        <div>
+        <!-- Items à direita -->
+        <div class="navbar-nav">
             {% if user.is_authenticated %}
-            <form method="post" action="{% url 'novo-ticket' %}">
-                {% csrf_token %}
-                <button type="submit" class="btn btn-success">NOVO TICKET</button>    
-            </form>
-            {% endif %}
-        </div>
-        <div class="ms-2">
-            {% if user.is_authenticated %}
-            <form method="post" action="{% url 'logout' %}">
-                {% csrf_token %}
-                <button type="submit" class="btn btn-light">Logout</button>
-            </form>
+            <ul class="nav navbar-nav navbar-right align-items-center">
+                <li class="nav-item me-3 me-lg-1">
+                    <a class="nav-link d-sm-flex align-items-sm-center" href="/">
+                        <img
+                        src="https://robohash.org/lembre-me"
+                        class="rounded-circle"
+                        height="22"
+                        alt="Black and White Portrait of a Man"
+                        loading="lazy"
+                        style="background-color: white;"
+                        />
+                        <strong class="d-none d-sm-block ms-2">{{ user.username }}</strong>
+                    </a>
+                </li>
+                <li class="nav-item ms-2">
+                    <form method="post" action="{% url 'logout' %}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-light btn-sm .mx-auto"> Sair</button>
+                    </form>
+                </li>
+            </ul>
             {% else %}
-            <li class="d-inline">
-                <a class="btn btn-light" href="{% url 'login' %}">Log In</a>
-            </li>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a class="btn btn-secondary btn-sm .mx-auto" href="{% url 'register' %}"> Registre-se</a></li>
+                <li><a class="btn btn-light ms-2 btn-sm .mx-auto" href="{% url 'login' %}"> Entrar</a></li>
+            </ul>
             {% endif %}
         </div>
     </div>
