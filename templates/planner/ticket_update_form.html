@@ -1,11 +1,14 @@
 {% extends 'base/base.html' %}
+{% block title %} Editar ticket {% endblock %}
+{% load static %}
 
 {% block content %}
 <div class="container mt-5">
     <form method="post">
         {% csrf_token %}
-        {{ form }}
-        <input type="submit" class="btn btn-primary" value="Atualizar">
+        {{ form.as_p }}
+        <input type="submit" class="btn btn-primary md-2 btn-sm" value="Atualizar">
+        <a type="submit" class="btn btn-secondary ms-2 btn-sm" href="{% url 'lista-ticket' %}">Cancelar</a>
     </form>
 </div>
 {% endblock %}
