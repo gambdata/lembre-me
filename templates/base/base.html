@@ -10,11 +10,14 @@
         <title>{% block title %}{% endblock %}</title>
     </head>
     <body>
-        {% block navbar %}
-        {% include 'base/includes/navbar.html' %}
-        {% endblock %}
+        <nav>
+            {% include 'base/includes/navbar.html' %}
+        </nav>
 
-        {% block content %}{% endblock %}
+        <div class="container mt-5">
+            {% block content %}{% endblock %}
+        </div>
+
         <!-- Bootstrap Js -->
         <script src="{% static 'js/bootstrap.min.js' %}"></script>
     </body>
