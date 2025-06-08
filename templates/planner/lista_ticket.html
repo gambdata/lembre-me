@@ -1,0 +1,44 @@
+{% extends 'base/base.html' %}
+{% block title %} Lista tickets {% endblock %}
+{% load static %}
+
+{% block content %}
+<div class="d-flex justify-content-between mb-3 align-items-center">
+    <h2>Seus tickets... {{ user.first_name }}</h2>
+    <a class="btn btn-success d-flex align-items-center" title="Novo Ticket" href="{% url 'novo-ticket' %}">Criar Ticket</a>
+</div>
+
+<table class="table table-striped">
+    <thead class="table-dark">
+        <tr class="text-center">
+            <th>Título</th>
+            <th>Progresso</th>
+            <th>Data Início</th>
+            <th>Data Fim</th>
+            <th>Data Prevista Conclusão</th>
+            <th>Data Atualização</th>
+            <th>Responsável</th>
+            <th>####</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in object_list %}
+            <tr>
+                <td>{{ item.titulo }}</td>
+                <td>{{ item.progresso }}</td>
+                <td>{{ item.dt_inicio|date }}</td>
+                <td>{{ item.dt_fim|date }}</td>
+                <td>{{ item.dt_conclusao_prev|date }}</td>
+                <td>{{ item.dt_atualizacao|date }}</td>
+                <td>{{ item.responsavel }}</td>
+                <td>
+                    <a href="{% url 'editar-ticket' item.pk %}"><img class="img-fluid" src="{% static '/images/edit.png' %}" title="Editar"></a>
+                    <a href="{% url 'excluir-ticket' item.pk %}"><img class="img-fluid ms-2" src="{% static '/images/bin.png' %}" title="Excluir" onclick="return confirm('Deseja excluir o ticket {{ item.titulo }}?')"></a>
+                </td>
+            </tr>
+        {% empty %}
+            <p>Não há ticktes por aqui...</p>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
