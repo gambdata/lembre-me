@@ -1,11 +1,14 @@
 {% extends 'base/base.html' %}
+{% block title %} Novo ticket {% endblock %}
+{% load static %}
 
 {% block content %}
 <div class="container mt-5">
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <input type="submit" class="btn btn-primary mt-2" value="Criar">
+        <input type="submit" class="btn btn-primary" value="Criar">
+        <a type="submit" class="btn btn-secondary ms-2" href="{% url 'lista-ticket' %}">Cancelar</a>
     </form>
 </div>
 {% endblock %}
