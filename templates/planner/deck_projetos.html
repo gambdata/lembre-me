@@ -1,0 +1,129 @@
+{% extends 'base/base.html' %}
+
+{% block title %} Projetos {% endblock %}
+
+{% block content %}
+<div class="container-fluid pt-3">
+    <div class="d-flex justify-content-between mb-3 align-items-center">
+        <h3> Projetos em andamento... </h3>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <h5 class="text-center"> Novo </h5>
+            {% for item in object_list %}
+            {% if item.progresso_id == 1 %}
+            <div class="card border-primary mb-3" style="max-width: 80rem;">
+                <div class="card-header" style="font-style:italic; font-size:14px; font-weight:bold">##{{item.id}}</div>
+                <div class="card-body">
+                    <h6 class="card-title">{{item.titulo}}</h6>
+                    <p class="card-text" style="font-size:12px">Criado em {{item.dt_inicio}}</p>
+                    <div class="d-flex justify-content-between mb-3 align-items-center">
+                        <a class="nav-link d-sm-flex align-items-sm-center" href="/">
+                            <img
+                            src="https://robohash.org/lembre-me"
+                            class="rounded-circle"
+                            height="22"
+                            alt="Black and White Portrait of a Man"
+                            loading="lazy"
+                            style="background-color: white;"
+                            />
+                            <strong class="d-none d-sm-block ms-2">{{ item.responsavel }}</strong>
+                        </a>
+                        <a class="link-warning link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover d-sm-flex" href="{% url 'editar-ticket' item.pk %}"> Editar</a>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+
+        <div class="col">
+            <h5 class="text-center"> Em andamento </h5>
+            {% for item in object_list %}
+            {% if item.progresso_id == 2 %}
+            <div class="card border-warning mb-3" style="max-width: 80rem;">
+                <div class="card-header" style="font-style:italic; font-size:14px; font-weight:bold">##{{item.id}}</div>
+                <div class="card-body">
+                    <h6 class="card-title">{{item.titulo}}</h6>
+                    <p class="card-text" style="font-size:12px">Criado em {{item.dt_inicio}}</p>
+                    <div class="d-flex justify-content-between mb-3 align-items-center">
+                        <a class="nav-link d-sm-flex align-items-sm-center" href="/">
+                            <img
+                            src="https://robohash.org/lembre-me"
+                            class="rounded-circle"
+                            height="22"
+                            alt="Black and White Portrait of a Man"
+                            loading="lazy"
+                            style="background-color: white;"
+                            />
+                            <strong class="d-none d-sm-block ms-2">{{ item.responsavel }}</strong>
+                        </a>
+                        <a class="link-warning link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover d-sm-flex" href="{% url 'editar-ticket' item.pk %}"> Editar</a>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+
+        <div class="col">
+            <h5 class="text-center"> Testando </h5>
+            {% for item in object_list %}
+            {% if item.progresso_id == 3 %}
+            <div class="card border-danger mb-3" style="max-width: 80rem;">
+                <div class="card-header" style="font-style:italic; font-size:14px; font-weight:bold">##{{item.id}}</div>
+                <div class="card-body">
+                    <h6 class="card-title">{{item.titulo}}</h6>
+                    <p class="card-text" style="font-size:12px">Criado em {{item.dt_inicio}}</p>
+                    <div class="d-flex justify-content-between mb-3 align-items-center">
+                        <a class="nav-link d-sm-flex align-items-sm-center" href="/">
+                            <img
+                            src="https://robohash.org/lembre-me"
+                            class="rounded-circle"
+                            height="22"
+                            alt="Black and White Portrait of a Man"
+                            loading="lazy"
+                            style="background-color: white;"
+                            />
+                            <strong class="d-none d-sm-block ms-2">{{ item.responsavel }}</strong>
+                        </a>
+                        <a class="link-warning link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover d-sm-flex" href="{% url 'editar-ticket' item.pk %}"> Editar</a>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+
+        <div class="col">
+            <h5 class="text-center"> Homologação </h5>
+            {% for item in object_list %}
+            {% if item.progresso_id == 4 %}
+            <div class="card border-success mb-3" style="max-width: 80rem;">
+                <div class="card-header" style="font-style:italic; font-size:14px; font-weight:bold">##{{item.id}}</div>
+                <div class="card-body">
+                    <h6 class="card-title">{{item.titulo}}</h6>
+                    <p class="card-text" style="font-size:12px">Criado em {{item.dt_inicio}}</p>
+                    <div class="d-flex justify-content-between mb-3 align-items-center">
+                        <a class="nav-link d-sm-flex align-items-sm-center" href="/">
+                            <img
+                            src="https://robohash.org/lembre-me"
+                            class="rounded-circle"
+                            height="22"
+                            alt="Black and White Portrait of a Man"
+                            loading="lazy"
+                            style="background-color: white;"
+                            />
+                            <strong class="d-none d-sm-block ms-2">{{ item.responsavel }}</strong>
+                        </a>
+                        <a class="link-warning link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover d-sm-flex" href="{% url 'editar-ticket' item.pk %}"> Editar</a>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}
