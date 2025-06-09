@@ -2,6 +2,8 @@ from django.urls import reverse_lazy
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.list import ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 
 from .models import Ticket
 from .forms import NovoTicketForm, UpdateTicketForm
@@ -9,6 +11,11 @@ from .forms import NovoTicketForm, UpdateTicketForm
 class TicketListView(LoginRequiredMixin, ListView):
     model = Ticket
     template_name = 'planner/lista_ticket.html'
+    paginate_by = 3
+
+class ProjetosListView(LoginRequiredMixin, ListView):
+    model = Ticket
+    template_name = 'planner/deck_projetos.html'
     paginate_by = 10
 
 class NovoViewTicket(LoginRequiredMixin, CreateView):
@@ -21,6 +28,7 @@ class NovoViewTicket(LoginRequiredMixin, CreateView):
     # Função para setar o usuário logado como criador
     def form_valid(self, form):
             form.instance.criado_por = self.request.user
+            # form.instance.progresso = 'Novo'
             return super().form_valid(form)
 
 class UpdateViewTicket(LoginRequiredMixin, UpdateView):
@@ -34,3 +42,12 @@ class DeleteViewTicket(LoginRequiredMixin, DeleteView):
     model = Ticket
     success_url = reverse_lazy('lista-ticket')
     login_url = 'login'
+
+    def form_valid(self, form):
+        try:
+            self.object.delete()
+            return HttpResponseRedirect(self.success_url)
+        except Exception as e:
+            return HttpResponseRedirect(
+                reverse('excluir-ticket', kwargs={'pk': self.object.pk})
+            )
