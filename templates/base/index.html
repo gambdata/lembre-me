@@ -6,8 +6,16 @@
 <div class="container mt-5">
     {% if user.is_authenticated %}
     <div class="container mt-5 text-white">
-        <h1>Bem-vindo {{ user.first_name }}!</h1>
-        <p class="lead">Crie projetos e faça interações com seu time.</p>
+
+        <h3 text-xl font-semibold text-center>
+        {% now "H" as hora %} <!--  Variável de hora -->
+        {% if hora|add:"0" >= 00 and hora|add:"0" <= 12 %} Bom dia,
+        {% elif hora|add:"0" >= 12 and hora|add:"0" <= 18 %} Boa tarde,
+        {% else %} Boa noite, {% endif %}
+            {{ user.first_name }}
+        </h3>
+        <h6 flex items-center gap-2 font-medium text-custom-text-400 style="color: gray">{% now "l, j M H:i" %}</h6>
+        <p class="lead mt-3">Crie projetos e faça interações com seu time.</p>
         <div class="row">
             <div class="col-md-6 mb-4">
                 <div class="card bg-dark text-white border-secondary">
@@ -32,7 +40,7 @@
     </div>
     {% else %}
     <div class="container mt-5 text-white">
-            <h1>Bem-vindo ao Lembre-me</h1>
+            <h3>Olá, este é o Lembre-me</h3>
             <p class="lead">Gerencie seus projetos, crie, delete e edite seus tickets. O diferencial é nosso chat entre o responsável do ticket e o cliente..</p>
             <div class="row">
                 <div class="col-md-6 mb-4">
