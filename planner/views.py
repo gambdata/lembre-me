@@ -1,9 +1,8 @@
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.list import ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect
-from django.urls import reverse
 
 from .models import Ticket
 from .forms import NovoTicketForm, UpdateTicketForm
