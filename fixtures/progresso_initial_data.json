@@ -1,0 +1,37 @@
+[
+  {
+    "model": "planner.progresso",
+    "pk": 1,
+    "fields": {
+      "progresso": "Novo"
+    }
+  },
+  {
+    "model": "planner.progresso",
+    "pk": 2,
+    "fields": {
+      "progresso": "Em andamento"
+    }
+  },
+  {
+    "model": "planner.progresso",
+    "pk": 3,
+    "fields": {
+      "progresso": "Pendente"
+    }
+  },
+  {
+    "model": "planner.progresso",
+    "pk": 4,
+    "fields": {
+      "progresso": "Cancelado"
+    }
+  },
+  {
+    "model": "planner.progresso",
+    "pk": 5,
+    "fields": {
+      "progresso": "Concluído"
+    }
+  }
+]
