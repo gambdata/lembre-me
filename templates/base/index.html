@@ -7,14 +7,18 @@
     {% if user.is_authenticated %}
     <div class="container mt-5 text-white">
 
-        <h3 text-xl font-semibold text-center>
         {% now "H" as hora %} <!--  Variável de hora -->
-        {% if hora|add:"0" >= 00 and hora|add:"0" <= 12 %} Bom dia,
-        {% elif hora|add:"0" >= 12 and hora|add:"0" <= 18 %} Boa tarde,
-        {% else %} Boa noite, {% endif %}
-            {{ user.first_name }}
-        </h3>
-        <h6 flex items-center gap-2 font-medium text-custom-text-400 style="color: gray">{% now "l, j M H:i" %}</h6>
+        {% if hora|add:"0" >= 00 and hora|add:"0" < 12 %}
+        <h3 text-xl font-semibold text-center>Bom dia, {{ user.first_name }}</h3>
+        <h6 flex items-center gap-2 font-medium text-custom-text-400 style="color: gray"><img class="img-fluid" src="{% static '/images/sun.png' %}"> {% now "l, j M H:i" %}</h6>
+        {% elif hora|add:"0" >= 12 and hora|add:"0" < 18 %}
+        <h3 text-xl font-semibold text-center>Boa tarde, {{ user.first_name }}</h3>
+        <h6 flex items-center gap-2 font-medium text-custom-text-400 style="color: gray"><img class="img-fluid" src="{% static '/images/sun.png' %}"> {% now "l, j M H:i" %}</h6>
+        {% else %}
+        <h3 text-xl font-semibold text-center>Boa noite, {{ user.first_name }}</h3>
+        <h6 flex items-center gap-2 font-medium text-custom-text-400 style="color: gray"><img class="img-fluid" src="{% static '/images/moon.png' %}"> {% now "l, j M H:i" %}</h6>
+        {% endif %}
+
         <p class="lead mt-3">Crie projetos e faça interações com seu time.</p>
         <div class="row">
             <div class="col-md-6 mb-4">
