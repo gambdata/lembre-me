@@ -16,11 +16,18 @@ PROGRESSO = [
 ]
 
 class Progresso(models.Model):
-    # progresso = models.ForeignKey(Ticket, on_delete=models.CASCADE, related_name='ticket_progresso')
     progresso = models.CharField(_('Progresso'), max_length=20, default='Novo')
 
     def __str__(self):
         return self.progresso
+
+class SubTicket(models.Model):
+    criado_por = models.ForeignKey(User, on_delete=models.CASCADE, related_name='subtickets_criados')
+    titulo = models.CharField(_('Titulo'), max_length=50, null=False)
+    status = models.BooleanField(_('Status'), default=0)
+
+    def __str__(self):
+        return self.titulo
 
 class Ticket(models.Model):
     criado_por = models.ForeignKey(User, on_delete=models.CASCADE, related_name='tickets_criados')
@@ -33,6 +40,7 @@ class Ticket(models.Model):
     dt_conclusao_prev = models.DateTimeField(_('Data conclusão prevista'), blank=True, null=True)
     dt_atualizacao = models.DateTimeField(_('Data atualização'), auto_now=True)
     responsavel = models.ForeignKey(Usuario, on_delete=models.CASCADE, related_name='tickets_designados')
+    subticket = models.ManyToManyField(SubTicket, related_name='subticket_ticket')
 
     def __str__(self):
         return self.titulo
