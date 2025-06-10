@@ -4,8 +4,8 @@ from django.views.generic.list import ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect
 
-from .models import Ticket
-from .forms import NovoTicketForm, UpdateTicketForm
+from .models import Ticket, SubTicket
+from .forms import NovoTicketForm, UpdateTicketForm, NovoSubTicketForm
 
 class TicketListView(LoginRequiredMixin, ListView):
     model = Ticket
@@ -29,6 +29,18 @@ class NovoViewTicket(LoginRequiredMixin, CreateView):
             form.instance.criado_por = self.request.user
             # form.instance.progresso = 'Novo'
             return super().form_valid(form)
+
+class NovoViewSubTicket(LoginRequiredMixin, CreateView):
+    model = SubTicket
+    form_class = NovoSubTicketForm
+    template_name = 'planner/novo_subticket.html'
+    success_url = '/planner/'
+    login_url = 'login'
+
+    def form_valid(self, form):
+        form.instance.criado_por = self.request.user
+        form.instance.status = 0
+        return super().form_valid(form)
 
 class UpdateViewTicket(LoginRequiredMixin, UpdateView):
     model = Ticket
