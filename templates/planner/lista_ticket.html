@@ -36,6 +36,7 @@
                 <td>{{ item.responsavel }}</td>
                 <td class="text-center">
                     <a href="{% url 'editar-ticket' item.pk %}"><img class="img-fluid" src="{% static '/images/edit.png' %}" title="Editar"></a>
+                    <a href="{% url 'novo-subticket' %}"><img class="img-fluid" src="{% static '/images/plus.png' %}" title="Novo Subticket"></a>
                     <a href="{% url 'excluir-ticket' item.pk %}"><img class="img-fluid ms-2" src="{% static '/images/bin.png' %}" title="Excluir")></a>
                 </td>
             </tr>
