@@ -1,0 +1,61 @@
+{% extends 'base/base.html' %}
+{% block title %} Lista projetos {% endblock %}
+{% load static %}
+
+{% block content %}
+<div class="d-flex justify-content-between mb-3 align-items-center">
+    <h2>Seus projetos... {{ user.first_name }}</h2>
+    <a class="btn btn-success d-flex align-items-center" title="Novo Projeto" href="{% url 'novo-projeto' %}">Add Projeto</a>
+</div>
+
+{% if object_list|length < 1 %}
+    <div class="inicial">Não há projetos por aqui..</div>
+{% else %}
+<table class="table table-striped">
+    <thead class="table-dark">
+        <tr class="text-center">
+            <th>Título</th>
+            <th>Data Início</th>
+            <th>Data Fim</th>
+            <th>Data Atualização</th>
+            <th>Responsável</th>
+            <th>####</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in object_list %}
+            <tr>
+                <td>{{ item.titulo }}</td>
+                <td class="text-center">{{ item.dt_inicio|date }}</td>
+                {% if not item.dt_fim %}<td class="text-center"> -- </td>{% else %}<td class="text-center">{{ item.dt_fim|date }}</td>{% endif %}
+                <td>{{ item.dt_atualizacao|date }}</td>
+                <td>{{ item.responsavel }}</td>
+                <td class="text-center">
+                    <a href="{% url 'novo-ticket' %}"><img class="img-fluid" src="{% static '/images/plus.png' %}" title="Novo Ticket"></a>
+                    <a href="{% url 'editar-projeto' item.pk %}"><img class="img-fluid" src="{% static '/images/edit.png' %}" title="Editar"></a>
+                    <a href=""><img class="img-fluid ms-2" src="{% static '/images/bin.png' %}" title="Excluir")></a>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1" class="link-success link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">&laquo; primeiro</a>
+            <a href="?page={{ page_obj.previous_page_number }}" class="link-success link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">anterior</a>
+        {% endif %}
+
+        <span class="current">
+            Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}" class="link-success link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">próxima</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}" class="link-success link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">último &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+{% endif %}
+{% endblock %}
