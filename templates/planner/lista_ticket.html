@@ -5,7 +5,7 @@
 {% block content %}
 <div class="d-flex justify-content-between mb-3 align-items-center">
     <h2>Seus tickets... {{ user.first_name }}</h2>
-    <a class="btn btn-success d-flex align-items-center" title="Novo Ticket" href="{% url 'novo-ticket' %}">Criar Ticket</a>
+    <a class="btn btn-success d-flex align-items-center" title="Novo Ticket" href="{% url 'novo-ticket' %}">Add Ticket</a>
 </div>
 
 {% if object_list|length < 1 %}
@@ -36,7 +36,6 @@
                 <td>{{ item.responsavel }}</td>
                 <td class="text-center">
                     <a href="{% url 'editar-ticket' item.pk %}"><img class="img-fluid" src="{% static '/images/edit.png' %}" title="Editar"></a>
-                    <a href="{% url 'novo-subticket' %}"><img class="img-fluid" src="{% static '/images/plus.png' %}" title="Novo Subticket"></a>
                     <a href="{% url 'excluir-ticket' item.pk %}"><img class="img-fluid ms-2" src="{% static '/images/bin.png' %}" title="Excluir")></a>
                 </td>
             </tr>
