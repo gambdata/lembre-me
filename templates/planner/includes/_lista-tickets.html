@@ -1,0 +1,67 @@
+{% load static %}
+
+{% if object_list %}
+<table class="table table-striped">
+    <thead class="table-dark">
+        <tr class="text-center">
+            <th>Título</th>
+            <th>Progresso</th>
+            <th>Data Início</th>
+            <th>Data Fim</th>
+            <th>Data Prevista Conclusão</th>
+            <th>Data Atualização</th>
+            <th>Responsável</th>
+            <th>####</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in object_list %}
+            <tr>
+                <td>{{ item.titulo }}</td>
+                <td>{{ item.progresso }}</td>
+                <td class="text-center">{{ item.dt_inicio|date:"d M, Y" }}</td>
+                {% if not item.dt_fim %}<td class="text-center"> -- </td>{% else %}<td class="text-center">{{ item.dt_fim|date:"d M, Y" }}</td>{% endif %}
+                <td class="text-center">{{ item.dt_conclusao_prev|date:"d M, Y" }}</td>
+                <td>{{ item.dt_atualizacao|date:"d M, Y" }}</td>
+                <td>{{ item.responsavel }}</td>
+                <td class="text-center">
+                    <a href="{% url 'editar-ticket' item.pk %}"><img class="img-fluid" src="{% static '/images/edit.png' %}" title="Editar"></a>
+                    <a
+                        hx-confirm="Are you sure {{item.titulo}} ?"
+                        hx-delete="{% url 'excluir-ticket' item.pk %}"
+                        hx-target="#lista-tickets">
+                        <img class="img-fluid ms-2" src="{% static '/images/bin.png' %}" title="Excluir")>
+                    </a>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1" class="link-success link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">&laquo; primeiro</a>
+            <a href="?page={{ page_obj.previous_page_number }}" class="link-success link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">anterior</a>
+        {% endif %}
+
+        <span class="current">
+            Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}" class="link-success link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">próxima</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}" class="link-success link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">último &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+{% else %}
+<div class="alert alert-primary d-flex align-items-center" role="alert">
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi flex-shrink-0 me-2" viewBox="0 0 16 16">
+    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4m.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2"/>
+  </svg>
+  <div>
+      Não há ticktes por aqui...
+  </div>
+</div>
+{% endif %}
