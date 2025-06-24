@@ -8,9 +8,7 @@
     <a class="btn btn-success d-flex align-items-center" title="Novo Projeto" href="{% url 'novo-projeto' %}">Add Projeto</a>
 </div>
 
-{% if object_list|length < 1 %}
-    <div class="inicial">Não há projetos por aqui..</div>
-{% else %}
+{% if object_list %}
 <table class="table table-striped">
     <thead class="table-dark">
         <tr class="text-center">
@@ -26,9 +24,9 @@
         {% for item in object_list %}
             <tr>
                 <td>{{ item.titulo }}</td>
-                <td class="text-center">{{ item.dt_inicio|date }}</td>
-                {% if not item.dt_fim %}<td class="text-center"> -- </td>{% else %}<td class="text-center">{{ item.dt_fim|date }}</td>{% endif %}
-                <td>{{ item.dt_atualizacao|date }}</td>
+                <td class="text-center">{{ item.dt_inicio|date:"d M, Y" }}</td>
+                {% if not item.dt_fim %}<td class="text-center"> -- </td>{% else %}<td class="text-center">{{ item.dt_fim|date:"d M, Y" }}</td>{% endif %}
+                <td>{{ item.dt_atualizacao|date:"d M, Y" }}</td>
                 <td>{{ item.responsavel }}</td>
                 <td class="text-center">
                     <a href="{% url 'novo-ticket' %}"><img class="img-fluid" src="{% static '/images/plus.png' %}" title="Novo Ticket"></a>
@@ -56,6 +54,15 @@
             <a href="?page={{ page_obj.paginator.num_pages }}" class="link-success link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">último &raquo;</a>
         {% endif %}
     </span>
+</div>
+{% else %}
+<div class="alert alert-primary d-flex align-items-center" role="alert">
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi flex-shrink-0 me-2" viewBox="0 0 16 16">
+    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4m.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2"/>
+  </svg>
+  <div>
+      Não há projetos por aqui...
+  </div>
 </div>
 {% endif %}
 {% endblock %}
