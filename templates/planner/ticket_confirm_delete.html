@@ -1,12 +1,14 @@
-{% extends 'base/base.html' %}
-
-{% block content %}
-<div class="container mt-5">
-    <form method="post">
-        {% csrf_token %}
-        <p> Você tem certeza que deseja excluir <strong>{{ object }}</strong>? </p>
-        <input type="submit" class="btn btn-danger" value="Confirmar">
-        <a type="submit" class="btn btn-secondary ms-2" href="{% url 'lista-ticket' %}">Cancelar</a>
-    </form>
+<div class="modal-dialog modal-dialog-centered">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+        <form method="post">
+            {% csrf_token %}
+            <p> Você tem certeza que deseja excluir <strong>{{ object }}</strong> ? </p>
+            <input type="submit" class="btn btn-danger" value="Confirmar">
+        </form>
+    </div>
+  </div>
 </div>
-{% endblock %}
