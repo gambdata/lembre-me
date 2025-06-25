@@ -7,10 +7,9 @@
         <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
         <link href="{% static 'css/style.css' %}" rel="stylesheet">
         <link rel="shortcut icon" type="image/png" href="{% static 'images/favicon.png' %}">
-        <script src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.5/dist/htmx.min.js" integrity="sha384-t4DxZSyQK+0Uv4jzy5B0QyHyWQD2GFURUmxKMBVww9+e2EJ0ei/vCvv7+79z0fkr" crossorigin="anonymous"></script>
         <title>{% block title %}{% endblock %}</title>
     </head>
-    <body>
+    <body hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
         <nav>
             {% include 'base/includes/navbar.html' %}
         </nav>
@@ -19,12 +18,8 @@
             {% block content %}{% endblock %}
         </div>
 
-        <!-- Bootstrap Js -->
+        <!-- Js -->
         <script src="{% static 'js/bootstrap.min.js' %}"></script>
-        <script>
-          document.body.addEventListener('htmx:configRequest', (event) => {
-            event.detail.headers['X-CSRFToken'] = '{{ csrf_token }}';
-          })
-        </script>
+        <script src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.5/dist/htmx.min.js" integrity="sha384-t4DxZSyQK+0Uv4jzy5B0QyHyWQD2GFURUmxKMBVww9+e2EJ0ei/vCvv7+79z0fkr" crossorigin="anonymous"></script>
     </body>
 </html>
