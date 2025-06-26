@@ -2,7 +2,7 @@ from django.urls import reverse_lazy, reverse
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.list import ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 
 from .models import Ticket, Projeto
 from .forms import NovoTicketForm, UpdateTicketForm, NovoProjetoForm, UpdateProjetoForm
@@ -36,15 +36,7 @@ class DeleteViewTicket(LoginRequiredMixin, DeleteView):
     model = Ticket
     success_url = reverse_lazy('lista-ticket')
     login_url = 'login'
-
-    def form_valid(self, form):
-        try:
-            self.object.delete()
-            return HttpResponseRedirect(self.success_url)
-        except Exception as e:
-            return HttpResponseRedirect(
-                reverse('excluir-ticket', kwargs={'pk': self.object.pk})
-            )
+    http_method_names = ["post"]
 
 class ProjetosListView(LoginRequiredMixin, ListView):
     model = Projeto
