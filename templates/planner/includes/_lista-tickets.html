@@ -27,9 +27,11 @@
                 <td class="text-center">
                     <a href="{% url 'editar-ticket' item.pk %}"><img class="img-fluid" src="{% static '/images/edit.png' %}" title="Editar"></a>
                     <a
+                        hx-post="{% url 'excluir-ticket' item.pk %}"
                         hx-confirm="Are you sure {{item.titulo}} ?"
-                        hx-delete="{% url 'excluir-ticket' item.pk %}"
-                        hx-target="#lista-tickets">
+                        hx-swap="innerHTML"
+                        hx-target="#lista-tickets"
+                        hx-trigger="click">
                         <img class="img-fluid ms-2" src="{% static '/images/bin.png' %}" title="Excluir")>
                     </a>
                 </td>
