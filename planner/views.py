@@ -11,7 +11,7 @@ class TicketListView(LoginRequiredMixin, ListView):
     model = Ticket
     template_name = 'planner/lista_ticket.html'
     paginate_by = 3
-    ordering = ('dt_inicio')
+    ordering = ('-dt_inicio')
 
 class NovoViewTicket(LoginRequiredMixin, CreateView):
     model = Ticket
@@ -63,3 +63,9 @@ class UpdateViewProjeto(LoginRequiredMixin, UpdateView):
     template_name = 'planner/update_projeto.html'
     success_url = '/planner/projetos/'
     login_url = 'login'
+
+class DeleteViewProjeto(LoginRequiredMixin, DeleteView):
+    model = Projeto
+    success_url = reverse_lazy('lista-projeto')
+    url_login = 'login'
+    http_method_names = ['post']
