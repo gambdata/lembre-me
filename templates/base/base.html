@@ -9,7 +9,7 @@
         <link rel="shortcut icon" type="image/png" href="{% static 'images/favicon.png' %}">
         <title>{% block title %}{% endblock %}</title>
     </head>
-    <body hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
+    <body hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}' id="body">
         <nav>
             {% include 'base/includes/navbar.html' %}
         </nav>
