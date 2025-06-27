@@ -1,18 +1,16 @@
-{% extends 'base/base.html' %}
-{% block title %} Novo ticket {% endblock %}
 {% load static %}
 
-{% block content %}
-<div class="container mt-5">
-    <div class="d-flex justify-content-between mb-3 align-items-center">
+<div class="modal-dialog modal-dialog-centered">
+  <div class="modal-content">
+    <div class="modal-header">
         <h3>Crie seu ticket...</h3>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
     </div>
-
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" class="btn btn-primary" value="Criar">
-        <a type="submit" class="btn btn-secondary ms-2" href="{% url 'lista-ticket' %}">Cancelar</a>
-    </form>
+    <div class="modal-body">
+        <form hx-post="{% url 'novo-ticket' %}" hx-target="#body">
+            {{ form.as_p }}
+            <input type="submit" class="btn btn-primary" value="Criar">
+        </form>
+    </div>
+  </div>
 </div>
-{% endblock %}

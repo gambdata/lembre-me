@@ -14,27 +14,30 @@
             <th>####</th>
         </tr>
     </thead>
-    {% for item in object_list %}
-    <tbody hx-confirm="Dejesa excluir: {{item.titulo}} ?" hx-target="#body" hx-swap="innerHTML">
-            <tr>
-                <td>{{ item.titulo }}</td>
-                <td>{{ item.progresso }}</td>
-                <td class="text-center">{{ item.dt_inicio|date:"d M, Y" }}</td>
-                {% if not item.dt_fim %}<td class="text-center"> -- </td>{% else %}<td class="text-center">{{ item.dt_fim|date:"d M, Y" }}</td>{% endif %}
-                <td class="text-center">{{ item.dt_conclusao_prev|date:"d M, Y" }}</td>
-                <td class="text-center">{{ item.dt_atualizacao|date:"d M, Y" }}</td>
-                <td>{{ item.responsavel }}</td>
-                <td class="text-center">
-                    <a href="{% url 'editar-ticket' item.pk %}"><img class="img-fluid" src="{% static '/images/edit.png' %}" title="Editar"></a>
-                    <a
-                        hx-post="{% url 'excluir-ticket' item.pk %}"
-                        hx-trigger="click">
-                        <img class="img-fluid ms-2" src="{% static '/images/bin.png' %}" title="Excluir")>
-                    </a>
-                </td>
-            </tr>
-        </tbody>
+    <tbody>
+        {% for item in object_list %}
+        <tr>
+            <td>{{ item.titulo }}</td>
+            <td class="text-center">{{ item.progresso }}</td>
+            <td class="text-center">{{ item.dt_inicio|date:"d M, Y" }}</td>
+            {% if not item.dt_fim %}<td class="text-center"> -- </td>{% else %}<td class="text-center">{{ item.dt_fim|date:"d M, Y" }}</td>{% endif %}
+            <td class="text-center">{{ item.dt_conclusao_prev|date:"d M, Y" }}</td>
+            <td class="text-center">{{ item.dt_atualizacao|date:"d M, Y" }}</td>
+            <td class="text-center">{{ item.responsavel }}</td>
+            <td class="text-center">
+                <a href="{% url 'editar-ticket' item.pk %}"><img class="img-fluid" src="{% static '/images/edit.png' %}" title="Editar"></a>
+                <a
+                    hx-post="{% url 'excluir-ticket' item.pk %}"
+                    hx-confirm="Deseja excluir: {{item.titulo}} ?"
+                    hx-target="#body"
+                    hx-swap="innerHTML"
+                    hx-trigger="click">
+                    <img class="img-fluid ms-2 bin" src="{% static '/images/bin.png' %}" title="Excluir")>
+                </a>
+            </td>
+        </tr>
         {% endfor %}
+    </tbody>
 </table>
 
 <div class="pagination">

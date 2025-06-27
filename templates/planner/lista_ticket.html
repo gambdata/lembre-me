@@ -5,7 +5,13 @@
 {% block content %}
 <div class="d-flex justify-content-between mb-3 align-items-center">
     <h2>Seus tickets... {{ user.first_name }}</h2>
-    <a class="btn btn-success d-flex align-items-center" title="Novo Ticket" href="{% url 'novo-ticket' %}">Add Ticket</a>
+    <a
+        hx-get="{% url 'novo-ticket' %}"
+        hx-target="#modals-ticket"
+        data-bs-toggle="modal"
+        data-bs-target="#modals-ticket"
+        class="btn btn-success d-flex align-items-center" title="Novo Ticket">Add Ticket
+    </a>
 </div>
 
 <div id="lista-tickets">
@@ -13,7 +19,13 @@
 </div>
 
 <!-- Modal novo ticket -->
-<div class="modal fade" id="modals-delete" tabindex="-1" aria-hidden="true">
+<div class="modal fade" id="modals-ticket" tabindex="-1" aria-hidden="true">
     {% include 'planner/novo_ticket.html' %}
 </div>
+
+<!-- Modal editar ticket -->
+<div class="modal fade" id="modals-ticket" tabindex="-1" aria-hidden="true">
+    {% include 'planner/update_ticket.html' %}
+</div>
+
 {% endblock %}
