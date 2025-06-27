@@ -11,6 +11,7 @@ class TicketListView(LoginRequiredMixin, ListView):
     model = Ticket
     template_name = 'planner/lista_ticket.html'
     paginate_by = 3
+    ordering = ('dt_inicio')
 
 class NovoViewTicket(LoginRequiredMixin, CreateView):
     model = Ticket
