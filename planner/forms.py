@@ -20,7 +20,7 @@ class UpdateTicketForm(forms.ModelForm):
         widgets = {
             'titulo': forms.TextInput(attrs={'class': 'form-control'}),
             'progresso': forms.Select(attrs={'class': 'form-control'}),
-            'dt_conclusao_prev': forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}),
+            'dt_conclusao_prev': forms.DateInput(format=('%Y-%m-%d'), attrs={'type': 'date', 'class': 'form-control'}),
             'responsavel': forms.Select(attrs={'class': 'form-control'})
         }
 
