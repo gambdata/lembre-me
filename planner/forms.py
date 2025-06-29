@@ -1,4 +1,5 @@
 from django import forms
+from django.utils.translation import gettext_lazy as _
 
 from .models import Ticket, Projeto
 
@@ -30,16 +31,20 @@ class NovoProjetoForm(forms.ModelForm):
         fields = ['titulo', 'descricao']
         widgets = {
             'titulo': forms.TextInput(attrs={'class': 'form-control'}),
-            'descricao': forms.Textarea(attrs={'class': 'form-control'})
+            'descricao': forms.Textarea(attrs={'class': 'form-control', 'rows': '3'})
         }
 
 class UpdateProjetoForm(forms.ModelForm):
     class Meta:
         model = Projeto
         fields = ['titulo','descricao','status','sub_ticket','responsavel']
+        labels = {
+            'sub_ticket': _('Ticket relacionado'),
+            'status': _('Finalizado')
+        }
         widgets = {
             'titulo': forms.TextInput(attrs={'class': 'form-control'}),
-            'descricao': forms.Textarea(attrs={'class': 'form-control'}),
+            'descricao': forms.Textarea(attrs={'class': 'form-control', 'rows': '3'}),
             'sub_ticket': forms.SelectMultiple(attrs={'class': 'form-control'}),
             'responsavel': forms.Select(attrs={'class': 'form-control'})
         }
