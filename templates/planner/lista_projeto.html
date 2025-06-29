@@ -5,7 +5,13 @@
 {% block content %}
 <div class="d-flex justify-content-between mb-3 align-items-center">
     <h2>Seus projetos... {{ user.first_name }}</h2>
-    <a class="btn btn-success d-flex align-items-center" title="Novo Projeto" href="{% url 'novo-projeto' %}">Add Projeto</a>
+    <botton
+        hx-get="{% url 'novo-projeto' %}"
+        hx-target="#modals-novo-projeto"
+        data-bs-toggle="modal"
+        data-bs-target="#modals-novo-projeto"
+        class="btn btn-success d-flex align-items-center" title="Novo Projeto" >Add Projeto
+    </botton>
 </div>
 
 <div id="lista-projetos">
@@ -13,7 +19,17 @@
 </div>
 
 <!-- Modal novo projeto -->
-<div class="modal fade" id="modals-delete" tabindex="-1" aria-hidden="true">
+<div class="modal fade" id="modals-novo-projeto" tabindex="-1" aria-hidden="true">
     {% include 'planner/novo_projeto.html' %}
+</div>
+
+<!-- Modal editar projeto -->
+<div class="modal fade" id="modals-update-projeto" tabindex="-1" aria-hidden="true">
+    {% include 'planner/update_projeto.html' %}
+</div>
+
+<!-- Modal novo ticket -->
+<div class="modal fade" id="modals-ticket" tabindex="-1" aria-hidden="true">
+    {% include 'planner/novo_ticket.html' %}
 </div>
 {% endblock %}
