@@ -25,22 +25,22 @@
             <td class="text-center">{{ item.dt_atualizacao|date:"d M, Y" }}</td>
             <td class="text-center">{{ item.responsavel }}</td>
             <td class="text-center">
-                <a
+                <botton
                     hx-get="{% url 'editar-ticket' item.pk %}"
                     hx-target="#modals-update-ticket"
                     hx-trigger="click"
                     data-bs-toggle="modal"
                     data-bs-target="#modals-update-ticket">
                     <img class="img-fluid" src="{% static '/images/edit.png' %}" title="Editar">
-                </a>
-                <a
+                </botton>
+                <botton
                     hx-post="{% url 'excluir-ticket' item.pk %}"
                     hx-confirm="Deseja excluir: {{item.titulo}} ?"
                     hx-target="#body"
                     hx-swap="innerHTML"
                     hx-trigger="click">
-                    <img class="img-fluid ms-2 bin" src="{% static '/images/bin.png' %}" title="Excluir")>
-                </a>
+                    <img class="img-fluid ms-1 bin" src="{% static '/images/bin.png' %}" title="Excluir")>
+                    </botton>
             </td>
         </tr>
         {% endfor %}
