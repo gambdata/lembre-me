@@ -1,18 +1,16 @@
-{% extends 'base/base.html' %}
-{% block title %} Editar projeto {% endblock %}
 {% load static %}
 
-{% block content %}
-<div class="container mt-5">
-    <div class="d-flex justify-content-between mb-3 align-items-center">
-        <h3>Editando: <strong>{{ projeto.titulo }}</strong></h3>
+<div class="modal-dialog modal-dialog-centered">
+  <div class="modal-content">
+    <div class="modal-header">
+        <h4>Editando: <strong>{{ projeto.titulo }}</strong></h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
     </div>
-
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" class="btn btn-primary md-2 btn-sm" value="Atualizar">
-        <a type="submit" class="btn btn-secondary ms-2 btn-sm" href="{% url 'lista-projeto' %}">Cancelar</a>
-    </form>
+    <div class="modal-body">
+        <form hx-post="{{ request.path }}" hx-target="#body">
+            {{ form.as_p }}
+            <input type="submit" class="btn btn-primary" value="Atualizar">
+        </form>
+    </div>
+  </div>
 </div>
-{% endblock %}
