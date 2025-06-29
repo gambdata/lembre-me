@@ -43,6 +43,7 @@ class ProjetosListView(LoginRequiredMixin, ListView):
     model = Projeto
     template_name = 'planner/lista_projeto.html'
     paginate_by = 3
+    ordering = ('-dt_inicio')
 
 class NovoViewProjeto(LoginRequiredMixin, CreateView):
     model = Projeto
