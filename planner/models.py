@@ -28,7 +28,7 @@ class Ticket(models.Model):
     criado_por = models.ForeignKey(User, on_delete=models.CASCADE, related_name='tickets_criados')
     titulo = models.CharField(_('Título'), max_length=50, null=False)
     # progresso = models.CharField(_('Progresso'), max_length=1, choices=PROGRESSO, default='1')
-    progresso = models.ForeignKey(Progresso, on_delete=models.CASCADE, related_name='ticket_progresso') # progresso.ticket_progresso.all()
+    progresso = models.ForeignKey(Progresso, on_delete=models.CASCADE, related_name='ticket_progresso', default='Novo') # progresso.ticket_progresso.all()
     dt_inicio = models.DateTimeField(_('Data início'), auto_now_add=True)
     dt_fim = models.DateTimeField(_('Data fim'), blank=True, null=True)
     dt_conclusao_prev = models.DateTimeField(_('Data conclusão prevista'), blank=True, null=True)
@@ -45,6 +45,8 @@ class Projeto(models.Model):
     status = models.BooleanField(_('Status'), default=0)
     dt_inicio = models.DateTimeField(_('Data início'), auto_now_add=True)
     dt_fim = models.DateTimeField(_('Data fim'), blank=True, null=True)
+    dt_conclusao_prev = models.DateTimeField(_('Data conclusão prevista'), blank=True, null=True)
+    dt_atualizacao = models.DateTimeField(_('Data atualização'), auto_now=True)
     sub_ticket = models.ManyToManyField(Ticket, related_name='projeto_ticket')
     responsavel = models.ForeignKey(Usuario, on_delete=models.CASCADE, related_name='projeto_designado')
 
