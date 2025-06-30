@@ -1,8 +1,11 @@
+from users import forms
 from django.urls import reverse_lazy, reverse
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect, HttpResponse
+from django.utils import timezone
 
 from .models import Ticket, Projeto
 from .forms import NovoTicketForm, UpdateTicketForm, NovoProjetoForm, UpdateProjetoForm
@@ -33,11 +36,31 @@ class UpdateViewTicket(LoginRequiredMixin, UpdateView):
     success_url = '/planner/tickets/'
     login_url = 'login'
 
+    # Método para obter a instancia do objeto anterior e setar o novo progresso
+    def form_valid(self, form):
+        instance = self.get_object()
+        progresso_old = instance.progresso_id
+        progresso_novo = form.instance.progresso_id
+
+        if progresso_old != progresso_novo and progresso_novo == 5:
+            form.instance.dt_fim = timezone.now()
+            form.instance.dt_atualizacao = timezone.now()
+        return super().form_valid(form)
+
 class DeleteViewTicket(LoginRequiredMixin, DeleteView):
     model = Ticket
     success_url = reverse_lazy('lista-ticket')
     login_url = 'login'
     http_method_names = ["post"]
+
+class DetailViewTicket(LoginRequiredMixin, DetailView):
+    model = Ticket
+    template_name = 'planner/detalhe_ticket.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['now'] = timezone.now()
+        return context
 
 class ProjetosListView(LoginRequiredMixin, ListView):
     model = Projeto
@@ -64,6 +87,17 @@ class UpdateViewProjeto(LoginRequiredMixin, UpdateView):
     template_name = 'planner/update_projeto.html'
     success_url = '/planner/projetos/'
     login_url = 'login'
+
+    # Método para obter a instancia do objeto anterior e setar o novo status
+    def form_valid(self, form):
+        instance = self.get_object()
+        status_old = instance.status
+        status_novo = form.instance.status
+
+        if status_old != status_novo and status_novo == 1:
+            form.instance.dt_fim = timezone.now()
+            form.instance.dt_atualizacao = timezone.now()
+        return super().form_valid(form)
 
 class DeleteViewProjeto(LoginRequiredMixin, DeleteView):
     model = Projeto
