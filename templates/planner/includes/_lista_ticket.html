@@ -26,22 +26,22 @@
             <td class="text-center">{{ item.responsavel }}</td>
             <td class="text-center">
                 <a href="{% url 'detalhe-ticket' item.pk %}"><img class="img-fluid" src="{% static '/images/information.png' %}" title="Detalhes"></a>
-                <botton
+                <a type="button"
                     hx-get="{% url 'editar-ticket' item.pk %}"
                     hx-target="#modals-update-ticket"
                     hx-trigger="click"
                     data-bs-toggle="modal"
                     data-bs-target="#modals-update-ticket">
                     <img class="img-fluid ms-1" src="{% static '/images/edit.png' %}" title="Editar">
-                </botton>
-                <botton
+                </a>
+                <a type="button"
                     hx-post="{% url 'excluir-ticket' item.pk %}"
                     hx-confirm="Deseja excluir: {{item.titulo}} ?"
                     hx-target="#body"
                     hx-swap="innerHTML"
                     hx-trigger="click">
                     <img class="img-fluid ms-1 bin" src="{% static '/images/bin.png' %}" title="Excluir")>
-                </botton>
+                </a>
             </td>
         </tr>
         {% endfor %}
