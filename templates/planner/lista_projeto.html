@@ -5,13 +5,13 @@
 {% block content %}
 <div class="d-flex justify-content-between mb-3 align-items-center">
     <h2>Seus projetos... {{ user.first_name }}</h2>
-    <botton
+    <button
         hx-get="{% url 'novo-projeto' %}"
         hx-target="#modals-novo-projeto"
         data-bs-toggle="modal"
         data-bs-target="#modals-novo-projeto"
         class="btn btn-success d-flex align-items-center" title="Novo Projeto" >Add Projeto
-    </botton>
+    </button>
 </div>
 
 <div id="lista-projetos">
