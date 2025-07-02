@@ -45,6 +45,6 @@ class UpdateProjetoForm(forms.ModelForm):
         widgets = {
             'titulo': forms.TextInput(attrs={'class': 'form-control'}),
             'descricao': forms.Textarea(attrs={'class': 'form-control', 'rows': '3'}),
-            'sub_ticket': forms.SelectMultiple(attrs={'class': 'form-control'}),
+            'sub_ticket': forms.SelectMultiple(attrs={'class': 'form-select'}),
             'responsavel': forms.Select(attrs={'class': 'form-control'})
         }
