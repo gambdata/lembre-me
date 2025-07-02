@@ -21,20 +21,20 @@
                 {% if not item.dt_atualizacao %}<td class="text-center"> -- </td>{% else %}<td class="text-center">{{ item.dt_atualizacao|date:"d M, Y" }}</td>{% endif %}
                 <td class="text-center">{{ item.responsavel }}</td>
                 <td class="text-center">
-                    <botton
+                    <a type="button"
                         hx-get="{% url 'novo-ticket' %}"
                         hx-target="#modals-ticket"
                         data-bs-toggle="modal"
                         data-bs-target="#modals-ticket"><img class="img-fluid" src="{% static '/images/plus.png' %}" title="Novo Ticket">
-                    </botton>
-                    <botton
+                    </a>
+                    <a type="button"
                         hx-get="{% url 'editar-projeto' item.pk %}"
                         hx-target="#modals-update-projeto"
                         hx-trigger="click"
                         data-bs-toggle="modal"
                         data-bs-target="#modals-update-projeto">
                         <img class="img-fluid ms-1" src="{% static '/images/edit.png' %}" title="Editar">
-                    </botton>
+                    </a>
                     <a
                         hx-post="{% url 'excluir-projeto' item.pk %}"
                         hx-confirm="Deseja excluir: {{item.titulo}} ?"
