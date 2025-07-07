@@ -14,8 +14,8 @@
     </button>
 </div>
 
-<div id="lista-projetos">
-    {% include 'planner/includes/_lista_projeto.html' %}
+<div class="flex-grow" id="lista-projetos">
+    {% include 'planner/deck_lista_projeto.html' %}
 </div>
 
 <!-- Modal novo projeto -->
@@ -28,8 +28,14 @@
     {% include 'planner/update_projeto.html' %}
 </div>
 
+<!-- Modal detalhe projeto -->
+<div class="modal fade" id="modals-detalhe-projeto" tabindex="-1" aria-hidden="true">
+    {% include 'planner/detalhe_projeto.html' %}
+</div>
+
 <!-- Modal novo ticket -->
 <div class="modal fade" id="modals-ticket" tabindex="-1" aria-hidden="true">
     {% include 'planner/novo_ticket.html' %}
 </div>
+
 {% endblock %}
