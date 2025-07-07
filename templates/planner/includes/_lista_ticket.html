@@ -4,6 +4,7 @@
 <table class="table table-striped">
     <thead class="table-dark">
         <tr class="text-center">
+            <th>Id</th>
             <th>Título</th>
             <th>Progresso</th>
             <th>Data Início</th>
@@ -17,6 +18,7 @@
     <tbody>
         {% for item in object_list %}
         <tr>
+            <td class="text-center">TICKT {{ item.id }}</td>
             <td>{{ item.titulo }}</td>
             <td class="text-center">{{ item.progresso }}</td>
             <td class="text-center">{{ item.dt_inicio|date:"d M, Y" }}</td>
