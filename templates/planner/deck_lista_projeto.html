@@ -1,122 +1,65 @@
+{% load static %}
 {% block content %}
-<div class="container-fluid pt-3">
 
-    <div class="row">
-        <div class="col">
-            <h5 class="text-center"> Novo </h5>
-            {% for item in object_list %}
-            {% if item.progresso_id == 1 %}
-            <div class="card border-primary mb-3" style="max-width: 80rem;">
-                <div class="card-header" style="font-style:italic; font-size:14px; font-weight:bold">##{{item.id}}</div>
-                <div class="card-body">
-                    <h6 class="card-title">{{item.titulo}}</h6>
-                    <p class="card-text" style="font-size:12px">Criado em {{item.dt_inicio}}</p>
-                    <div class="d-flex justify-content-between mb-3 align-items-center">
-                        <a class="nav-link d-sm-flex align-items-sm-center" href="/">
-                            <img
-                            src="https://robohash.org/lembre-me"
-                            class="rounded-circle"
-                            height="22"
-                            alt="Black and White Portrait of a Man"
-                            loading="lazy"
-                            style="background-color: white;"
-                            />
-                            <strong class="d-none d-sm-block ms-2">{{ item.responsavel }}</strong>
-                        </a>
-                        <a class="link-warning link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover d-sm-flex" href="{% url 'editar-ticket' item.pk %}"> Editar</a>
-                    </div>
-                </div>
-            </div>
-            {% endif %}
-            {% endfor %}
-        </div>
-
-        <div class="col">
-            <h5 class="text-center"> Em andamento </h5>
-            {% for item in object_list %}
-            {% if item.progresso_id == 2 %}
-            <div class="card border-warning mb-3" style="max-width: 80rem;">
-                <div class="card-header" style="font-style:italic; font-size:14px; font-weight:bold">##{{item.id}}</div>
-                <div class="card-body">
-                    <h6 class="card-title">{{item.titulo}}</h6>
-                    <p class="card-text" style="font-size:12px">Criado em {{item.dt_inicio}}</p>
-                    <div class="d-flex justify-content-between mb-3 align-items-center">
-                        <a class="nav-link d-sm-flex align-items-sm-center" href="/">
-                            <img
-                            src="https://robohash.org/lembre-me"
-                            class="rounded-circle"
-                            height="22"
-                            alt="Black and White Portrait of a Man"
-                            loading="lazy"
-                            style="background-color: white;"
-                            />
-                            <strong class="d-none d-sm-block ms-2">{{ item.responsavel }}</strong>
-                        </a>
-                        <a class="link-warning link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover d-sm-flex" href="{% url 'editar-ticket' item.pk %}"> Editar</a>
-                    </div>
-                </div>
-            </div>
-            {% endif %}
-            {% endfor %}
-        </div>
-
-        <div class="col">
-            <h5 class="text-center"> Testando </h5>
-            {% for item in object_list %}
-            {% if item.progresso_id == 3 %}
-            <div class="card border-danger mb-3" style="max-width: 80rem;">
-                <div class="card-header" style="font-style:italic; font-size:14px; font-weight:bold">##{{item.id}}</div>
-                <div class="card-body">
-                    <h6 class="card-title">{{item.titulo}}</h6>
-                    <p class="card-text" style="font-size:12px">Criado em {{item.dt_inicio}}</p>
-                    <div class="d-flex justify-content-between mb-3 align-items-center">
-                        <a class="nav-link d-sm-flex align-items-sm-center" href="/">
-                            <img
-                            src="https://robohash.org/lembre-me"
-                            class="rounded-circle"
-                            height="22"
-                            alt="Black and White Portrait of a Man"
-                            loading="lazy"
-                            style="background-color: white;"
-                            />
-                            <strong class="d-none d-sm-block ms-2">{{ item.responsavel }}</strong>
-                        </a>
-                        <a class="link-warning link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover d-sm-flex" href="{% url 'editar-ticket' item.pk %}"> Editar</a>
-                    </div>
-                </div>
-            </div>
-            {% endif %}
-            {% endfor %}
-        </div>
-
-        <div class="col">
-            <h5 class="text-center"> Homologação </h5>
-            {% for item in object_list %}
-            {% if item.progresso_id == 4 %}
-            <div class="card border-success mb-3" style="max-width: 80rem;">
-                <div class="card-header" style="font-style:italic; font-size:14px; font-weight:bold">##{{item.id}}</div>
-                <div class="card-body">
-                    <h6 class="card-title">{{item.titulo}}</h6>
-                    <p class="card-text" style="font-size:12px">Criado em {{item.dt_inicio}}</p>
-                    <div class="d-flex justify-content-between mb-3 align-items-center">
-                        <a class="nav-link d-sm-flex align-items-sm-center" href="/">
-                            <img
-                            src="https://robohash.org/lembre-me"
-                            class="rounded-circle"
-                            height="22"
-                            alt="Black and White Portrait of a Man"
-                            loading="lazy"
-                            style="background-color: white;"
-                            />
-                            <strong class="d-none d-sm-block ms-2">{{ item.responsavel }}</strong>
-                        </a>
-                        <a class="link-warning link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover d-sm-flex" href="{% url 'editar-ticket' item.pk %}"> Editar</a>
-                    </div>
-                </div>
-            </div>
-            {% endif %}
-            {% endfor %}
-        </div>
+{% if object_list %}
+<div class="row row-cols-1 row-cols-md-4 g-3">
+  {% for item in object_list %}
+  <div class="col">
+    <div class="card h-100">
+      <svg aria-label="Placeholder: Imagem capa" class="bd-placeholder-img card-img-top" height="100" preserveAspectRatio="xMidYMid slice" role="img" width="100%" xmlns="http://www.w3.org/2000/svg">
+          <title>LEMBR{{ item.id }}</title><rect width="100%" height="100%" fill="#868e96"></rect>
+          <text x="35%" y="50%" fill="#dee2e6" dy=".3em">Imagem capa</text>
+      </svg>
+      <div class="card-body">
+        <span>LEMBR{{ item.id }}</span>
+        <h5 class="card-title">{{ item.titulo }}</h5>
+        <!-- <p class="card-text">{{ item.descricao }}</p> -->
+      </div>
+      <div class="card-footer">
+        <a class="icon-link icon-link-hover float-start" style="--bs-icon-link-transform: translate3d(0, -.125rem, 0); cursor: pointer;"
+            hx-get="{% url 'detalhe-projeto' item.pk %}"
+            hx-target="#modals-detalhe-projeto"
+            data-bs-toggle="modal"
+            data-bs-target="#modals-detalhe-projeto">
+            <svg xmlns="http://www.w3.org/2000/svg" class="bi float-start" viewBox="0 0 16 16" aria-hidden="true">
+                <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
+                <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
+            </svg>
+            Detalhes
+        </a>
+        <small class="text-body-primary float-end">Atualizado {{ item.dt_atualizacao|date:"d, M Y" }}</small>
+      </div>
     </div>
+  </div>
+  {% endfor %}
 </div>
+
+<div class="pagination mt-3">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1" class="link-success link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">&laquo; primeiro</a>
+            <a href="?page={{ page_obj.previous_page_number }}" class="link-success link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">anterior</a>
+        {% endif %}
+
+        <span class="current">
+            Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}" class="link-success link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">próxima</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}" class="link-success link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">último &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+{% else %}
+<div class="alert alert-primary d-flex align-items-center" role="alert">
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi flex-shrink-0 me-2" viewBox="0 0 16 16">
+    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4m.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2"/>
+  </svg>
+  <div>
+      Não há projetos por aqui...
+  </div>
+</div>
+{% endif %}
+
 {% endblock %}
