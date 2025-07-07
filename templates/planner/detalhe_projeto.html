@@ -1,0 +1,39 @@
+{% load static %}
+
+<div class="modal-dialog modal-dialog-centered">
+  <div class="modal-content">
+    <div class="modal-header">
+        <h4>{{ object.titulo }}</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+        <span><strong>LEMBR{{ object.id }}</strong></span>
+        <p>Descrição: {{ object.descricao }}</p>
+        <p>Responsável: {{ object.responsavel }}</p>
+        <p>Criado em: {{ object.dt_inicio|date }}</p>
+        <p>Data: {{ now|date }}</p>
+        <label for="tickets">Tickets relacionados:</label>
+        <select class="form-select" size="3" aria-label="Size 3 select example" id=tickets">
+          {% for item in projeto_ticket %}
+            <option value="{{ item.titulo }}">{{ item.titulo }}</option>
+          {% endfor %}
+        </select>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" type="button"
+            hx-get="editar/{{object.id}}"
+            hx-target="#modals-update-projeto"
+            hx-trigger="click"
+            hx-swap="innerHTML"
+            data-bs-toggle="modal"
+            data-bs-target="#modals-update-projeto"> Editar
+        </button>
+        <button class="btn btn-danger" type="button"
+            hx-post="excluir/{{object.id}}"
+            hx-confirm="Deseja excluir: {{ object.titulo }} ?"
+            hx-target="#body"
+            hx-swap="outerHTML"> Excluir
+        </button>
+    </div>
+  </div>
+</div>
