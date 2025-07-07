@@ -13,7 +13,7 @@ from .forms import NovoTicketForm, UpdateTicketForm, NovoProjetoForm, UpdateProj
 class TicketListView(LoginRequiredMixin, ListView):
     model = Ticket
     template_name = 'planner/lista_ticket.html'
-    paginate_by = 3
+    paginate_by = 10
     ordering = ('-dt_inicio')
 
 class NovoViewTicket(LoginRequiredMixin, CreateView):
@@ -65,7 +65,7 @@ class DetailViewTicket(LoginRequiredMixin, DetailView):
 class ProjetosListView(LoginRequiredMixin, ListView):
     model = Projeto
     template_name = 'planner/lista_projeto.html'
-    paginate_by = 3
+    paginate_by = 10
     ordering = ('-dt_inicio')
 
 class NovoViewProjeto(LoginRequiredMixin, CreateView):
@@ -104,3 +104,13 @@ class DeleteViewProjeto(LoginRequiredMixin, DeleteView):
     success_url = reverse_lazy('lista-projeto')
     url_login = 'login'
     http_method_names = ['post']
+
+class DetailViewProjeto(LoginRequiredMixin, DetailView):
+    model = Projeto
+    template_name = 'planner/detalhe_projeto.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['now'] = timezone.now()
+        context['projeto_ticket'] = Ticket.objects.filter(projeto_ticket__titulo = self.object)
+        return context
