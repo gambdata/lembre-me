@@ -1,7 +1,34 @@
-<div>
-    <h1>{{ object.titulo }}</h1>
-    <p>Progresso: {{ object.progresso }}</p>
-    <p>Responsável: {{ object.responsavel }}</p>
-    <p>Published: {{ object.dt_inicio|date }}</p>
-    <p>Data: {{ now|date }}</p>
+{% load static %}
+
+<div class="modal-dialog modal-dialog-centered">
+  <div class="modal-content">
+    <div class="modal-header">
+        <h4>{{ object.titulo }}</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+        <span><strong>TICKT{{ object.id }}</strong></span>
+        <p class="mt-2"><strong>Responsável:</strong> {{ object.responsavel }}</p>
+        <p><strong>Progresso:</strong> {{ object.progresso }}</p>
+        <p><strong>Criado em:</strong> {{ object.dt_inicio|date }}</p>
+        <p><strong>Finalizado em:</strong> {% if object.dt_fim %} {{ object.dt_fim|date }} {% else %} --- {% endif %}</p>
+        <p><strong>Atualizado em:</strong> {{ object.dt_atualizacao|date }}</p>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" type="button"
+            hx-get="editar/{{object.id}}"
+            hx-target="#modals-update-ticket"
+            hx-trigger="click"
+            hx-swap="innerHTML"
+            data-bs-toggle="modal"
+            data-bs-target="#modals-update-ticket"> Editar
+        </button>
+        <button class="btn btn-danger" type="button"
+            hx-post="excluir/{{object.id}}"
+            hx-confirm="Deseja excluir: {{ object.titulo }} ?"
+            hx-target="#body"
+            hx-swap="outerHTML"> Excluir
+        </button>
+    </div>
+  </div>
 </div>
