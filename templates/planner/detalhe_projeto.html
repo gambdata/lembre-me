@@ -8,10 +8,12 @@
     </div>
     <div class="modal-body">
         <span><strong>LEMBR{{ object.id }}</strong></span>
-        <p>Descrição: {{ object.descricao }}</p>
-        <p>Responsável: {{ object.responsavel }}</p>
-        <p>Criado em: {{ object.dt_inicio|date }}</p>
-        <p>Data: {{ now|date }}</p>
+        <p class="mt-2"><strong>Descrição:</strong> {{ object.descricao }}</p>
+        <p><strong>Responsável:</strong> {{ object.responsavel }}</p>
+        <p><strong>Status:</strong> {% if object.status == 1 %} Concluído {% else %} Em andamento {% endif %}</p>
+        <p><strong>Criado em:</strong> {{ object.dt_inicio|date }}</p>
+        <p><strong>Finalizado em:</strong> {% if object.dt_fim %} {{ object.dt_fim|date }} {% else %} --- {% endif %}</p>
+        <p><strong>Atualizado em:</strong> {{ object.dt_atualizacao|date }}</p>
         <label for="tickets">Tickets relacionados:</label>
         <select class="form-select" size="3" aria-label="Size 3 select example" id=tickets">
           {% for item in projeto_ticket %}
